@@ -6,7 +6,7 @@
 #    By: thgiraud <thgiraud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 17:47:51 by thgiraud          #+#    #+#              #
-#    Updated: 2019/02/22 16:01:43 by jcorwin          ###   ########.fr        #
+#    Updated: 2019/02/22 19:24:32 by jcorwin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC		= main.c \
 		  intersection_with_cylinder.c \
 		  light.c \
 		  quaternion_1.c \
-		  quaternion_2.c
+		  quaternion_2.c \
+		  keys.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

@@ -6,7 +6,7 @@
 /*   By: jcorwin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 13:25:54 by jcorwin           #+#    #+#             */
-/*   Updated: 2019/02/22 16:00:09 by jcorwin          ###   ########.fr       */
+/*   Updated: 2019/02/22 20:22:15 by jcorwin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,10 @@ void			gnl(int fd, char **line);
 void			get_cam(t_param *p, int fd, char **line);
 void			get_light(t_param *p, int fd, char **line);
 
+void			cam_init(t_param *param);
 void			read_file(t_param *p, char *filename);
+int				catch_event(t_param *p, t_sdl *sdl, SDL_Event *event);
+void			go(t_sdl *sdl, t_param *param);
 
 double			get_double(char *line);
 t_vec			get_vec(char *line);
@@ -228,7 +231,7 @@ void			intersection_with_sphere(t_figure *sphere,\
 void			intersection_with_cylinder(t_figure *sphere,\
 				double *t, t_intersection2 j);
 void			intersection_with_plane(t_figure *sphere,\
-				double *t, t_intersection2 j);
+				double *t, t_intersection2 j, int i);
 t_vec			vec_cross(t_vec v1, t_vec v2);
 t_quat			quat_invert(t_quat q);
 t_quat			quat_scale(t_quat q, double val);

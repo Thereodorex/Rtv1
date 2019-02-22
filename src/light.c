@@ -6,7 +6,7 @@
 /*   By: jcorwin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 15:44:09 by jcorwin           #+#    #+#             */
-/*   Updated: 2019/02/22 15:44:11 by jcorwin          ###   ########.fr       */
+/*   Updated: 2019/02/22 20:21:45 by jcorwin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int				is_shadow(t_param *param, t_vec p, t_vec light_ray)
 	intersection_with_cylinder(&sphere, &t, j);
 	if (t != -1)
 		return (0);
-	intersection_with_plane(&sphere, &t, j);
+	intersection_with_plane(&sphere, &t, j, 0);
 	if (t == -1)
 		return (1);
 	return (0);

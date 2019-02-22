@@ -6,7 +6,7 @@
 /*   By: jcorwin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 14:14:19 by jcorwin           #+#    #+#             */
-/*   Updated: 2019/02/21 21:06:06 by jcorwin          ###   ########.fr       */
+/*   Updated: 2019/02/22 18:06:38 by jcorwin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void		get_cone(t_param *p, int fd, char **line)
 			p->con[p->con_count - 1].color = ft_atoi_base(word3, 16);
 		else if (!ft_strcmp(*line, "center"))
 			p->con[p->con_count - 1].cen = get_vec(word3);
-		else if (!ft_strcmp(*line, "cos"))
+		else if (!ft_strcmp(*line, "angle"))
 			p->con[p->con_count - 1].cos = get_double(word3);
 		else if (!ft_strcmp(*line, "specular"))
 			p->con[p->con_count - 1].specular = get_double(word3);

@@ -6,7 +6,7 @@
 /*   By: jcorwin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 15:46:29 by jcorwin           #+#    #+#             */
-/*   Updated: 2019/02/22 16:10:02 by jcorwin          ###   ########.fr       */
+/*   Updated: 2019/02/22 20:21:33 by jcorwin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@ t_vec			rot(double angle, t_vec u, t_vec v)
 }
 
 void			intersection_with_plane(t_figure *sphere,\
-									double *t, t_intersection2 j)
+									double *t, t_intersection2 j, int i)
 {
 	double	t1;
-	int		i;
 
-	i = 0;
 	while (i < j.param->plane_count)
 	{
+		if (vec_scal(j.ray, (j.param->plane + i)->norm) /
+				vec_len(j.ray) / vec_len((j.param->plane + i)->norm) > 0)
+			(j.param->plane + i)->norm =
+				vec_mult(-1, (j.param->plane + i)->norm);
 		t1 = vec_scal(j.source, (j.param->plane + i)->norm);
 		t1 += -vec_scal((j.param->plane + i)->point,\
 		(j.param->plane + i)->norm);
@@ -66,7 +68,7 @@ t_param *param, t_vec ray)
 	intersection_with_sphere(sphere, t, j);
 	intersection_with_cone(sphere, t, j);
 	intersection_with_cylinder(sphere, t, j);
-	intersection_with_plane(sphere, t, j);
+	intersection_with_plane(sphere, t, j, 0);
 }
 
 static t_vec	init_ray(double angle_1, double angle_2,
@@ -88,11 +90,6 @@ int				render(t_sdl *sdl, t_param *param,
 	t_figure	sphere;
 	double		t;
 
-	printf("%f ", angle1);
-	printf("%f\n", angle2);
-	printf("%f\n", param->ray.ray.x);
-	printf("%f\n", param->ray.ray.y);
-	printf("%f\n", param->ray.ray.z);
 	x = -sdl->surf->w / 2;
 	while (x < sdl->surf->w / 2)
 	{

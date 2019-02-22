@@ -6,7 +6,7 @@
 /*   By: jcorwin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 12:41:55 by jcorwin           #+#    #+#             */
-/*   Updated: 2019/02/22 17:03:32 by jcorwin          ###   ########.fr       */
+/*   Updated: 2019/02/22 20:19:53 by jcorwin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,20 @@ static void		param_init(t_param *param)
 	param->cyl_count = 0;
 }
 
-static int		catch_event(t_sdl *sdl, SDL_Event *event)
+void			go(t_sdl *sdl, t_param *param)
 {
-	if (SDL_PollEvent(event))
-	{
-		if (event->type == SDL_QUIT)
-			return (0);
-		else if (event->type == SDL_WINDOWEVENT)
-		{
-			if (event->window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
-			{
-				SDL_DestroyRenderer(sdl->ren);
-				sdl->ren = SDL_CreateRenderer(sdl->win, -1,
-						SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-				sdl_print(sdl);
-			}
-		}
-	}
-	return (1);
+	double	angle_1;
+	double	angle_2;
+
+	if (vec_frompoint(param->ray.scene, param->ray.cam).x < 0)
+		angle_1 = acos(param->ray.cos_a);
+	else
+		angle_1 = -acos(param->ray.cos_a);
+	if (vec_frompoint(vec_new(0, 0, 0), param->ray.cam).y < 0)
+		angle_2 = acos(param->ray.cos_b);
+	else
+		angle_2 = -acos(param->ray.cos_b);
+	render(sdl, param, angle_1, angle_2);
 }
 
 int				main(int argc, char **argv)
@@ -87,10 +83,10 @@ int				main(int argc, char **argv)
 	read_file(&param, argv[1]);
 	cam_init(&param);
 	sdl = sdl_init(700, 200, WIDTH, HEIGHT);
-	render(sdl, &param, acos(param.ray.cos_a), acos(param.ray.cos_b));
+	go(sdl, &param);
 	sdl_print(sdl);
 	while (running)
-		running = catch_event(sdl, &event);
+		running = catch_event(&param, sdl, &event);
 	sdl = sdl_destroy(sdl);
 	param_del(&param);
 	return (0);
