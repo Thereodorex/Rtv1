@@ -1,0 +1,37 @@
+
+/light
+type = ambient
+intensity = 0.2
+
+/light
+type = point
+position = (-2000.0, -400.0, -4000.0)
+intensity = 0.4
+
+/light
+type = point
+position = (2000.0, -400.0, -4000.0)
+intensity = 1.0
+
+/cam
+position = (8000.0, 0.0, -1000.0)
+scene = (0.0, 0.0, 0.0)
+
+/cone
+color = 0x60f060
+center = (0.0, 0.0, 0.0)
+angle = 0.1
+specular = -1.0
+direction = (1000.0, 0.0, 0.0)
+
+//plane
+//color = 0x888808
+//point = (0.0, 0.0, 0.0)
+//specular = -1.0
+//normal = (1.0, 0.0, 0.0)
+
+/plane
+color = 0x088888
+point = (0.0, 0.0, 5000.0)
+specular = -1.0
+normal = (0.0, 0.0, -1.0)

@@ -6,7 +6,7 @@
 #    By: thgiraud <thgiraud@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/17 17:47:51 by thgiraud          #+#    #+#              #
-#    Updated: 2019/02/22 19:24:32 by jcorwin          ###   ########.fr        #
+#    Updated: 2019/02/23 16:56:44 by jcorwin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,13 +57,11 @@ SRCDIR	= ./src/
 INCDIR	= ./includes/
 OBJDIR	= ./objects/
 
-all: obj $(FT_LIB) $(NAME)
-
-obj:
-	mkdir -p $(OBJDIR)
+all: $(FT_LIB) $(NAME)
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
-	$(CC) $(CFLAGS) $(SDL_INC) $(FT_INC) -I $(INCDIR) $(FT_INC) -o $@ -c $<
+	mkdir -p $(OBJDIR)
+	$(CC) $(CFLAGS) $(SDL_INC) $(FT_INC) -I $(INCDIR) $(FT_INC) -Ofast -o $@ -c $<
 
 $(FT_LIB):
 	make -C $(FT)
@@ -72,7 +70,7 @@ $(MLX_LIB):
 	make -C $(MLX)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(SDL_LNK) -framework OpenCL $(FT_LNK) -framework OpenCL -lm -o $(NAME)
+	$(CC) $(OBJ) $(SDL_LNK) -framework OpenCL $(FT_LNK) -framework OpenCL -lm -Ofast -o $(NAME)
 
 clean:
 	rm -rf $(OBJDIR)

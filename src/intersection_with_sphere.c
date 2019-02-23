@@ -6,7 +6,7 @@
 /*   By: jcorwin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 15:45:08 by jcorwin           #+#    #+#             */
-/*   Updated: 2019/02/22 15:45:09 by jcorwin          ###   ########.fr       */
+/*   Updated: 2019/02/23 17:28:36 by jcorwin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_intersection2 j, t_intersection i)
 {
 	i.t1 = (-i.k.k2 + sqrt(i.dis)) / (2 * i.k.k1);
 	i.t2 = (-i.k.k2 - sqrt(i.dis)) / (2 * i.k.k1);
-	if (i.t1 > i.t2)
+	if (i.t1 > i.t2 && (j.t_max != -1 || i.t2 >= 1))
 	{
 		i.t1 = i.t2;
 	}
